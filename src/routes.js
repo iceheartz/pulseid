@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { createToken, validateToken, invaildateToken, getTokens} = require('./controllers/tokenController');
+const { createToken, validateToken, invalidateToken, getTokens} = require('./controllers/tokenController');
 
 //Endpoint 1: Create invite Token
 router.post('/token', createToken);
@@ -11,7 +11,7 @@ router.post('/token', createToken);
 router.get('/token/:token', validateToken);
 
 //Endpoint 3: Disable invite Token
-router.put('/token/:token', invaildateToken);
+router.put('/token/:token', invalidateToken);
 
 //Endpoint 4: Get all invite Token
 router.get('/tokens', getTokens)

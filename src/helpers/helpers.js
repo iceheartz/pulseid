@@ -7,6 +7,6 @@ const _randToken = (length) => {
         return result;
 }
 
-export{
+module.exports = {
     _randToken
 }

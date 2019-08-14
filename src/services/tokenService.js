@@ -25,6 +25,7 @@ const db = sequelize.define('tokens', {
     allowNull: false
   },
   createdAt: Sequelize.DATE,
+  updatedAt: Sequelize.DATE,
   // usage:{
   //   type: Sequelize.INTEGER,
   //   allowNull: false
@@ -34,20 +35,22 @@ const db = sequelize.define('tokens', {
   //   allowNull: false
   // },
   status: {
-    type: Sequelize.ENUM('acive', 'inactive'),
+    type: Sequelize.ENUM('active', 'inactive'),
     allowNull: false
   }
 });
 
 const createToken = (payload) => {
   const charLen = _.get(payload, 'tokenLength', undefined)
-  if( charLen !== undefined || charLen < 6 || charLen > 12) {
+  if( charLen === undefined || charLen < 6 || charLen > 12) {
     throw new Error('Invalid character Length');
   }
   
   const token = _randToken(charLen);
   const dbPayload = {
     token,
+    createdAt: new Date(),
+    updatedAt: new Date(),
     status: 'active',
   }
 
@@ -70,8 +73,8 @@ const validateToken = (token) => {
           },
           status: 'active'
         }
-      }).then(({id}) => {
-        if(_.isUndefined(id)){
+      }).then((res) => { 
+        if(_.isUndefined(res) || _.isUndefined(_.get(res, 'id', undefined))){
           throw new Error('Token is invalid')
         }
         return true;
@@ -88,10 +91,7 @@ const invalidateToken = (token) => {
       where: {
         token,
       }
-    }).then(({id}) => {
-      if(_.isUndefined(id)){
-        throw new Error('Token is invalid')
-      }
+    }).then(() => {
       return true;
     }).catch( err => {
     throw new Error(err.message);
@@ -115,7 +115,7 @@ const getTokens = () => {
 
   return db
     .findAll({
-      order: 'status DESC'
+      order: ['status']
     })
     .then(tokens =>{
       return tokens
