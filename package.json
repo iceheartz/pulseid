@@ -1,0 +1,42 @@
+{
+  "name": "pulseid",
+  "version": "1.0.0",
+  "description": "Coding Test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "mocha -R spec src/**/*.spec.js"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iceheartz/pluseid.git"
+  },
+  "keywords": [],
+  "author": "Toni Lim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iceheartz/pulseid/issues"
+  },
+  "homepage": "https://github.com/iceheartz/pulseid#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.1",
+    "pre-commit": "^1.2.2",
+    "sequelize": "^4.41.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "rewire": "^4.0.1",
+    "sequelize-mock": "^0.10.2",
+    "sinon": "^7.1.1",
+    "sinon-chai": "^3.2.0",
+    "sinon-express-mock": "^2.1.0"
+  }
+}
