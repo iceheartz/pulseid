@@ -3,6 +3,9 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+const swagger = require('swagger-ui-express');
+const swaggerDoc = require('./swagger.json')
+
 const routes = require('./src/routes'); 
 const { db } = require('./src/services/tokenService');
 
@@ -13,6 +16,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/api/', routes);
+app.use('/api-docs', swagger.serve, swagger.setup(swaggerDoc));
 
 db.sync()
 .then(() => {

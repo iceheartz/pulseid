@@ -1,0 +1,152 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0",
+      "title": "Token",
+      "description": "",
+      "contact": {}
+    },
+    "host": "localhost:8888",
+    "basePath": "/api",
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/token": {
+        "post": {
+          "description": "Token Length should be 6 to 12",
+          "summary": "Create Token",
+          "tags": [
+            "Token"
+          ],
+          "operationId": "TokenPost",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Body",
+              "in": "body",
+              "required": true,
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/CreateTokenRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/token/{token}": {
+        "get": {
+          "description": "",
+          "summary": "validate Token",
+          "tags": [
+            "Token"
+          ],
+          "operationId": "TokenGet",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name":"token",
+              "in": "path",
+              "required": true,
+              "description":""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        },
+        "put": {
+          "description": "",
+          "summary": "invalidate token",
+          "tags": [
+            "Token"
+          ],
+          "operationId": "TokenPut",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name":"token",
+              "in": "path",
+              "required": true,
+              "description":""
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      },
+      "/tokens": {
+        "get": {
+          "description": "",
+          "summary": "get all tokens",
+          "tags": [
+            "Token"
+          ],
+          "operationId": "TokensGet",
+          "deprecated": false,
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "CreateTokenRequest": {
+        "title": "CreateTokenRequest",
+        "example": {
+          "tokenLength": 6
+        },
+        "type": "object",
+        "properties": {
+          "tokenLength": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "tokenLength"
+        ]
+      }
+    },
+    "tags": [
+      {
+        "name": "Token",
+        "description": ""
+      }
+    ]
+  }

@@ -6,7 +6,6 @@ services:
     container_name: mysql
     volumes:
       - dbdata:/var/lib/mysql
-      - ./data:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=secret

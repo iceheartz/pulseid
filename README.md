@@ -20,6 +20,12 @@ To start a fully dockerised app,
 $ docker-compose up
 ```
 
+## Accessing API via Swagger
+
+```sh
+http://localhost:8888/api-docs/
+```
+
 ## Accessing the API
 
 Locate the API with the following endpoints

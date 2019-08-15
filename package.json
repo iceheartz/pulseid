@@ -28,7 +28,8 @@
     "morgan": "^1.9.1",
     "mysql2": "^1.6.1",
     "pre-commit": "^1.2.2",
-    "sequelize": "^6.0.0"
+    "sequelize": "^6.0.0",
+    "swagger-ui-express": "^4.0.7"
   },
   "devDependencies": {
     "chai": "^4.2.0",
