@@ -17,7 +17,7 @@ $ npm run test
 To start a fully dockerised app,
 
 ```sh
-$ docker-compose up
+$ docker-compose up --build
 ```
 
 ## Accessing API via Swagger

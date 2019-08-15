@@ -26,14 +26,6 @@ const db = sequelize.define('tokens', {
   },
   createdAt: Sequelize.DATE,
   updatedAt: Sequelize.DATE,
-  // usage:{
-  //   type: Sequelize.INTEGER,
-  //   allowNull: false
-  // },
-  // maxUsage:{
-  //   type: Sequelize.INTEGER,
-  //   allowNull: false
-  // },
   status: {
     type: Sequelize.ENUM('active', 'inactive'),
     allowNull: false
@@ -64,6 +56,9 @@ const createToken = (payload) => {
 }
 
 const validateToken = (token) => {
+  if( token === undefined || _.size(token) < 6 || _.size(token) > 12) {
+    throw new Error('Invalid token');
+  }
   return db
     .findOne({
         where: {
@@ -75,7 +70,7 @@ const validateToken = (token) => {
         }
       }).then((res) => { 
         if(_.isUndefined(res) || _.isUndefined(_.get(res, 'id', undefined))){
-          throw new Error('Token is invalid')
+          throw new Error('Invalid token')
         }
         return true;
       }).catch( err => {
@@ -84,6 +79,9 @@ const validateToken = (token) => {
 }
 
 const invalidateToken = (token) => {
+  if( token === undefined || _.size(token) < 6 || _.size(token) > 12) {
+    throw new Error('Invalid token');
+  }
   return db
     .update({
       status: 'inactive'

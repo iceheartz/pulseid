@@ -14,6 +14,6 @@ router.get('/token/:token', validateToken);
 router.put('/token/:token', invalidateToken);
 
 //Endpoint 4: Get all invite Token
-router.get('/tokens', getTokens)
+router.get('/tokens', getTokens);
 
 module.exports = router;
