@@ -1,6 +1,8 @@
 const tokenService = require('../services/tokenService');
+const _ = require('lodash');
 
 const createToken = async(req, res) => {
+  if(_.get(req, 'user.id', undefined) === undefined) return res.status(400).json({ message: 'Unauthorizeed Access' });
     try {
       const result = await tokenService.createToken(req.body);
       return res.status(200).json(result);
@@ -19,6 +21,7 @@ const validateToken = async(req, res) => {
 }
 
 const invalidateToken = async (req, res) => {
+  if(_.get(req, 'user.id', undefined) === undefined) return res.status(400).json({ message: 'Unauthorizeed Access' });
     try {
       const result = await tokenService.invalidateToken(req.params.token);
       return res.status(200).json(result);
@@ -28,12 +31,13 @@ const invalidateToken = async (req, res) => {
 }
 
 const getTokens =  async (req, res) => {
-  try {
-    const result = await tokenService.getTokens();
-    return res.status(200).json(result);
-  } catch(err) {
-    return res.status(400).json({ message: err.message });
-  }
+  if(_.get(req, 'user.id', undefined) === undefined) return res.status(400).json({ message: 'Unauthorizeed Access' });
+    try {
+      const result = await tokenService.getTokens();
+      return res.status(200).json(result);
+    } catch(err) {
+      return res.status(400).json({ message: err.message });
+    }
 }
 
 module.exports = {

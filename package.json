@@ -28,6 +28,8 @@
     "lodash": "^4.17.11",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.1",
+    "passport": "^0.4.0",
+    "passport-http-bearer": "^1.0.1",
     "pre-commit": "^1.2.2",
     "sequelize": "^6.0.0",
     "swagger-ui-express": "^4.0.7"
